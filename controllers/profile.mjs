@@ -1,5 +1,3 @@
-import mongoose from "mongoose";
-
 import User from "../model/User.mjs";
 import Profile from "../model/Profile.mjs";
 import { validateProfileInput } from "../validation/profileValidator.mjs";

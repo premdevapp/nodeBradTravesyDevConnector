@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
+    ref: "users",
   },
   text: {
     type: String,
@@ -13,13 +14,14 @@ const PostSchema = new Schema({
   name: {
     type: String,
   },
-  avatar: {
+  avator: {
     type: String,
   },
   likes: [
     {
       user: {
         type: Schema.Types.ObjectId,
+        ref: "users",
       },
     },
   ],
@@ -27,6 +29,7 @@ const PostSchema = new Schema({
     {
       user: {
         type: Schema.Types.ObjectId,
+        ref: "users",
       },
       text: {
         type: String,
@@ -35,7 +38,7 @@ const PostSchema = new Schema({
       name: {
         type: String,
       },
-      avatar: {
+      avator: {
         type: String,
       },
       date: {
