@@ -1,8 +1,49 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../../actions/authActions";
 
 class Navbar extends Component {
+  onLogoutClick(event) {
+    event.preventDefault();
+    this.props.logoutUser();
+  }
   render() {
+    const { isAuthenticated, user } = this.props.auth;
+    const authLinks = (
+      <>
+        <li className="nav-item">
+          <a
+            className="nav-link"
+            href=""
+            onClick={this.onLogoutClick.bind(this)}
+          >
+            <img
+              className="rounded-circle"
+              src={user.avator}
+              alt={user.name}
+              style={{ width: "25px", marginRight: "5px" }}
+              title="You must have a Gravator connected to email to display an image"
+            />{" "}
+            Logout
+          </a>
+        </li>
+      </>
+    );
+    const guestLinks = (
+      <>
+        <li className="nav-item">
+          <Link to="/profiles">Developers</Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/register">Register</Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/login">Login</Link>
+        </li>
+      </>
+    );
     return (
       <div>
         <nav className="navbar bg-dark">
@@ -12,15 +53,7 @@ class Navbar extends Component {
             </Link>
           </h1>
           <ul>
-            <li>
-              <Link to="/profiles">Developers</Link>
-            </li>
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
+            <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
           </ul>
         </nav>
       </div>
@@ -28,4 +61,13 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+Navbar.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { logoutUser })(Navbar);
