@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import classnames from "classnames";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
+import TextFieldGroup from "../common/TextFieldGroup";
 
 class Login extends Component {
   constructor() {
@@ -54,36 +54,22 @@ class Login extends Component {
             <i className="fas fa-user"></i> Sign into Your Account
           </p>
           <form className="form" onSubmit={this.onSubmit}>
-            <div className="form-group">
-              <input
-                className={classnames("form-control form-control-lg", {
-                  "is-invalid": errors.email,
-                })}
-                type="email"
-                placeholder="Email Address"
-                name="email"
-                value={this.state.email}
-                onChange={this.onChange}
-              />
-              {errors.email && (
-                <div className="invalid-feedback">{errors.email}</div>
-              )}
-            </div>
-            <div className="form-group">
-              <input
-                className={classnames("form-control form-control-lg", {
-                  "is-invalid": errors.password,
-                })}
-                type="password"
-                placeholder="Password"
-                name="password"
-                value={this.state.password}
-                onChange={this.onChange}
-              />
-              {errors.password && (
-                <div className="invalid-feedback">{errors.password}</div>
-              )}
-            </div>
+            <TextFieldGroup
+              placeholder="Email Address"
+              name="email"
+              type="email"
+              value={this.state.email}
+              onChange={this.onChange}
+              error={errors.email}
+            />
+            <TextFieldGroup
+              placeholder="Password"
+              name="password"
+              type="password"
+              value={this.state.password}
+              onChange={this.onChange}
+              error={errors.password}
+            />
             <input type="submit" className="btn btn-primary" value="Login" />
           </form>
           <p className="my-1">
