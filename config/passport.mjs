@@ -1,7 +1,7 @@
 import Strategy, { ExtractJwt } from "passport-jwt";
 import mongoose from "mongoose";
 
-import { keys } from "./keys.mjs";
+import { keys } from "./keys_dev.mjs";
 
 const JwtStrategy = Strategy.Strategy;
 

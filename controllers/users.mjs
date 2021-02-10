@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 import User from "../model/User.mjs";
-import { keys } from "../config/keys.mjs";
+import { keys } from "../config/keys_dev.mjs";
 import { validateRegisterInput } from "../validation/register.mjs";
 import { validateLoginInput } from "../validation/login.mjs";
 

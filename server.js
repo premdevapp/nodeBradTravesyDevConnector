@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import passport from "passport";
 
 //config
-import { keys } from "./config/keys.mjs";
+import { keys } from "./config/keys_dev.mjs";
 
 //Port
 const port = process.env.PORT || 4000;
