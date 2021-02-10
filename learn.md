@@ -11,3 +11,6 @@ mongodb://localhost:27017/?readPreference=primary
 })
 .then(() => console.log("MongoDb Connected"))
 .catch((error) => console.error(error));
+
+- within component
+  this.props.history.push("/dashboard")
